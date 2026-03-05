@@ -16,4 +16,5 @@ In each city, the user can find the **best restaurants**, exciting **adventures*
 ## 🛠 Technologies
 - HTML
 - CSS
+- JS
 
