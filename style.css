@@ -410,6 +410,7 @@ nav.hide {
   color: inherit;
 }
 .destination-card {
+     position: relative;
   cursor: pointer;
   transition: transform 0.3s ease;
 }/* ===== CASABLANCA HERO ===== */
@@ -2283,3 +2284,25 @@ color: #800000;
   padding-left: 25px;
   color: black; /* couleur du texte indépendante de la puce */
 }
+.favori-btn {
+    position: absolute;   /* positionner par rapport à la carte */
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    border: 2px solid white;
+    background: none;     /* pas de fond */
+    font-size: 24px;
+    cursor: pointer;
+    border-radius: 50%;
+    line-height: 36px;
+    z-index: 10;          /* toujours au-dessus */
+    color:white;
+    transition: all 0.2s;
+}
+
+.favori-btn.favori-actif {
+    color:white;
+    border-color: white;
+}
+
