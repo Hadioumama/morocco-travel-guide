@@ -50,16 +50,29 @@ function mettreAJourBoutons() {
     });
 }
 
-// Afficher seulement la liste des favoris
-function afficherListeFavoris() {
+// Fonction qui met à jour les boutons selon les favoris
+function mettreAJourBoutons() {
     let favoris = JSON.parse(localStorage.getItem("favoris")) || [];
-    let liste = document.getElementById("listeFavoris");
-    if (liste) {
-        liste.innerHTML = "";
-        favoris.forEach(ville => {
-            let li = document.createElement("li");
-            li.textContent = ville;
-            liste.appendChild(li);
-        });
-    }
+
+    document.querySelectorAll(".favori-btn").forEach(btn => {
+        let ville = btn.getAttribute("data-ville");
+        if (favoris.includes(ville)) {
+            btn.classList.add("favori-actif"); // cœur rempli rouge
+            btn.textContent = '♥';
+        } else {
+            btn.classList.remove("favori-actif"); // cœur vide
+            btn.textContent = '♡';
+        }
+    });
 }
+
+// Appeler cette fonction au chargement
+window.addEventListener("DOMContentLoaded", mettreAJourBoutons);
+
+// Sélectionner le bouton existant
+document.querySelectorAll(".favori-btn").forEach(btn => {
+    btn.addEventListener("click", function(event){
+        event.stopPropagation(); // empêche la propagation au lien parent
+        window.alert("distination ajouté au favoris");
+    });
+});
