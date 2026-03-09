@@ -1,33 +1,28 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    let favoris = JSON.parse(localStorage.getItem("favoris")) || [];
+    const boutons = document.querySelectorAll(".favori-btn");
 
-    document.querySelectorAll(".favori-btn").forEach(btn => {
+    boutons.forEach(btn => {
 
-        let ville = btn.getAttribute("data-ville");
+        btn.addEventListener("click", function (e) {
 
-        // cœur rempli si déjà favori
-        if (favoris.includes(ville)) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            // remplir le cœur
             btn.textContent = "♥";
-            btn.classList.add("favori-actif");
-        }
+            btn.style.color = "whit";
+  window.alert("Ville ajoutée aux favoris !");
+            // afficher un message en haut
+            let message = document.getElementById("messageFavori");
 
-        btn.addEventListener("click", function(event) {
+            message.textContent = "Ville ajoutée aux favoris 🤍";
+            message.style.display = "block";
 
-            event.preventDefault();
-            event.stopPropagation();
-
-            if (btn.textContent === "♡") {
-                btn.textContent = "♥";
-                btn.classList.add("favori-actif");
-                favoris.push(ville);
-            } else {
-                btn.textContent = "♡";
-                btn.classList.remove("favori-actif");
-                favoris = favoris.filter(v => v !== ville);
-            }
-
-            localStorage.setItem("favoris", JSON.stringify(favoris));
+            // cacher le message après 3 secondes
+            setTimeout(() => {
+                message.style.display = "none";
+            }, 3000);
         });
 
     });
